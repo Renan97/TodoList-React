@@ -12,10 +12,17 @@ class App extends Component {
     todos: []
   };
 
+  initTodoList = todos => {
+    todos.map(todo => {});
+  };
+
   componentDidMount() {
     axios
       .get("https://jsonplaceholder.typicode.com/todos?_limit=10")
-      .then(res => this.setState({ todos: res.data }));
+      .then(res => {
+        this.setState({ todos: res.data });
+        this.initTodoList(res.data);
+      });
   }
 
   toggleComplete = id => {
